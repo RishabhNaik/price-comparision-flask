@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+
+    <!-- Style the navigation bar and product details section -->
+    <style>
+        /* Define color variables */
+        :root {
+            --lt-grey: #777777;
+            --grey: #d5d5d5;
+            --dk-grey: #3A3A3A;
+            --brand__alt: #007BFF; /* Changed from green to blue */
+            --brand: #6863CE;
+            --white: #ffffff;
+            --space: 8px;
+            --bg-color: #e0f7fa; /* Light blue background */
+        }
+
+        /* Basic styling for the navigation bar */
+        nav {
+            background-color: var(--brand);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        /* Style for the header */
+        nav h1 {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+            color: var(--white);
+        }
+
+        /* Styling for the link */
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px;
+            margin-left: 20px;
+        }
+
+        /* Hover effect for links */
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page styling */
+        body {
+            background-color: var(--bg-color);
+            padding-top: 60px; /* Add padding for navbar */
+            margin: 0;
+            font-family: Arial, sans-serif; /* Use Arial font */
+        }
+
+        /* Product details container styling */
+        .product-details {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+            max-width: 800px; /* Adjust width as needed */
+            margin: 0 auto;
+            padding: var(--space);
+            background-color: var(--white); /* White background for content */
+            border-radius: var(--space);
+            box-shadow: 0 2px 10px var(--lt-grey);
+        }
+
+        /* Image container */
+        .product-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image img {
+            max-width: 100%; /* Responsive image */
+            height: auto;
+            border-radius: var(--space);
+            box-shadow: 0 2px 10px var(--lt-grey); /* Shadow effect */
+        }
+
+        /* Details section container */
+        .details-section {
+            flex: 1;
+            padding: var(--space);
+        }
+
+        /* Style for product title */
+        #product-title {
+            font-size: 2rem;
+            margin-bottom: var(--space);
+            color: var(--dk-grey);
+        }
+
+        /* Style for product price */
+        #product-price {
+            font-size: 1.5rem;
+            color: var(--brand__alt);
+            margin-bottom: var(--space);
+        }
+
+        /* Style for product tag */
+        #product-tag {
+            font-size: 1.25rem;
+            margin-bottom: var(--space);
+            color: var(--dk-grey);
+        }
+
+        /* Style for product description */
+        #product-description {
+            font-size: 1rem;
+            color: var(--dk-grey);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <h1>Webscraping</h1>
+        <a href="h1.html#hero">About</a>
+    </nav>
+
+    <!-- Product details section -->
+    <div class="product-details">
+        <!-- Product image -->
+        <div class="product-image">
+            <img id="product-image" src="" alt="Product Image">
+        </div>
+
+        <!-- Product details -->
+        <div class="details-section">
+            <h2 id="product-title">Product Name</h2>
+            <p>Price: $<span id="product-price"></span></p>
+            <p>Price Tag: <span id="product-tag"></span></p>
+            <p id="product-description"></p> <!-- Description of the product -->
+        </div>
+    </div>
+
+    <!-- JavaScript to retrieve and display card data -->
+    <script>
+        // Retrieve card data from localStorage
+        const cardData = JSON.parse(localStorage.getItem("cardData"));
+
+        // If card data exists, display the information on the page
+        if (cardData) {
+            document.getElementById("product-title").innerText = cardData.cardName;
+            document.getElementById("product-image").src = cardData.imagePath;
+            document.getElementById("product-price").innerText = cardData.price;
+            document.getElementById("product-tag").innerText = cardData.tag;
+            document.getElementById("product-description").innerText = cardData.description;
+        }
+    </script>
+</body>
+</html>
